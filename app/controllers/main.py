@@ -6,3 +6,6 @@ def index():
     
     return render_template("global/index.html")
 
+@main.route('/documentation')
+def documentation():
+    return render_template("global/documentation.html")

@@ -1,0 +1,4 @@
+{% extends "global/base.html" %}
+            {% block content %}
+                <h5>Et vous pouver commencer ici sans importer la structure de base du html</h5>
+            {% endblock %}

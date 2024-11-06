@@ -1,0 +1,74 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<h1 class="display-4">
+    Les controlleurs
+   
+</h1>
+<p>
+    Caster est inspiré de la célèbre architecture de codage MVC (Modele Views Controllers)
+    <span><i>
+        <p>Par défaut un controlleur sous le main.py est deja enregistré dans l'application et contient les differentes routes de 
+            base du framework. 
+            <p>Par la suite 2 methode s'offrent à vous</p>
+            <p>1-Continuer a definir dans le fichier main.py les nouvelles routes comme ceci 
+                <div>
+                    @main.route('/nomderoute') <br>
+                    def fonctionaexecuter(): <br>
+                        return render_template("chemin/vers/le/template.html")
+                </div>
+            </p>
+            <p>2- Définir un autre fichiers de route</p>
+            Pour en définir une autre il faudra simplement creer un fichiers .py sous cette architecture pour plus de
+            clarté dans le code Ex:<strong>blog_controller.py</strong>
+            <p><nav>
+                <li>D'abord importer les Blueprint de flask (from flask import Blueprint)</li>
+                <li>Enregistré le Blueprint sous un nom (dans ce cas blog) blog_controller = Blueprint('blog', __name__)</li>
+                <li>Importer ce nouveau fichier de configurations dans le /controllers/__init__.py (from .controllers.blog_controller import blog_controller)</li>
+                <li>Rendez-vous maintenant dans le fichiers /app/__init__.py puis importer encore une fois le nouveau controlleur pour que l'applicattions le reconnaisse. 
+                    Pour ce faire ajoutez juste cette ligne <strong>from .controllers.blog_controller import blog_controller</strong> au dessus de cette ligne <strong>from .controllers.main import main</strong> dans la boucle while </li>
+            </nav></p>
+            
+        </p>
+    </i></span>
+</p>
+
+<h2 class="display-6">
+    Les controlleurs sans paramètres
+    
+</h2>
+<p>Pour définir un controllerus sans paramètres il suffif juste de ne rien déclarer comme parametre dans la fonction qui suit la définition de la route
+    Ex : @main.route('/')
+        def index():
+            return render_template("/chemin/vers/votre/template.html")
+</p>
+<h2 class="display-6">
+    Les controllers avec paramètres 
+    
+</h2>
+<p>Pour ce fait il vous suffira de definir la fonction avec juste les parametres que vous utiliserez pour le traitement de la page</p>
+
+<strong></strong>
+
+<h1 class="display-5">
+    Les Vues
+    
+</h1>
+<p>
+    Un controlleur renvoie la vue sous forme de template. Il faut noter que dans le fichiers qui vous servirat de controlleur vous pouver utiliser render_template importer de flask pour
+    afficher une vue. Ou si vous voulez rediriger vers une route <strong>render_template(url_for('nom_blueprint.fonction'))</strong>
+</p>
+<p>
+    Vous placerez vos différentes vue dans le dossier /views/templates/votre_nom_de_dossier/index.html.Ainsi pour qu'une vue pointe vers ce fichiers vous
+     utilisez le render_template("/votre_nom_de_dossier/index.html")
+</p>
+<p>
+    caster prend deja en compte la structure de base du html:5 jusqu'au body avec les fichiers bootstrap pré-importé bans le fichiers base.html
+    Lorsque vous créez un nouveau fichier html dans votre dossier décorez le comme suit:
+    <p>
+        <span>
+            
+        </span>
+    </p>
+</p>
+{% endblock %}
