@@ -1,74 +1,112 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-<h1 class="display-4">
-    Les controlleurs
-   
-</h1>
-<p>
-    Caster est inspiré de la célèbre architecture de codage MVC (Modele Views Controllers)
-    <span><i>
-        <p>Par défaut un controlleur sous le main.py est deja enregistré dans l'application et contient les differentes routes de 
-            base du framework. 
-            <p>Par la suite 2 methode s'offrent à vous</p>
-            <p>1-Continuer a definir dans le fichier main.py les nouvelles routes comme ceci 
-                <div>
-                    @main.route('/nomderoute') <br>
-                    def fonctionaexecuter(): <br>
-                        return render_template("chemin/vers/le/template.html")
-                </div>
-            </p>
-            <p>2- Définir un autre fichiers de route</p>
-            Pour en définir une autre il faudra simplement creer un fichiers .py sous cette architecture pour plus de
-            clarté dans le code Ex:<strong>blog_controller.py</strong>
-            <p><nav>
-                <li>D'abord importer les Blueprint de flask (from flask import Blueprint)</li>
-                <li>Enregistré le Blueprint sous un nom (dans ce cas blog) blog_controller = Blueprint('blog', __name__)</li>
-                <li>Importer ce nouveau fichier de configurations dans le /controllers/__init__.py (from .controllers.blog_controller import blog_controller)</li>
-                <li>Rendez-vous maintenant dans le fichiers /app/__init__.py puis importer encore une fois le nouveau controlleur pour que l'applicattions le reconnaisse. 
-                    Pour ce faire ajoutez juste cette ligne <strong>from .controllers.blog_controller import blog_controller</strong> au dessus de cette ligne <strong>from .controllers.main import main</strong> dans la boucle while </li>
-            </nav></p>
-            
-        </p>
-    </i></span>
-</p>
-
-<h2 class="display-6">
-    Les controlleurs sans paramètres
-    
-</h2>
-<p>Pour définir un controllerus sans paramètres il suffif juste de ne rien déclarer comme parametre dans la fonction qui suit la définition de la route
-    Ex : @main.route('/')
-        def index():
-            return render_template("/chemin/vers/votre/template.html")
-</p>
-<h2 class="display-6">
-    Les controllers avec paramètres 
-    
-</h2>
-<p>Pour ce fait il vous suffira de definir la fonction avec juste les parametres que vous utiliserez pour le traitement de la page</p>
-
-<strong></strong>
-
-<h1 class="display-5">
-    Les Vues
-    
-</h1>
-<p>
-    Un controlleur renvoie la vue sous forme de template. Il faut noter que dans le fichiers qui vous servirat de controlleur vous pouver utiliser render_template importer de flask pour
-    afficher une vue. Ou si vous voulez rediriger vers une route <strong>render_template(url_for('nom_blueprint.fonction'))</strong>
-</p>
-<p>
-    Vous placerez vos différentes vue dans le dossier /views/templates/votre_nom_de_dossier/index.html.Ainsi pour qu'une vue pointe vers ce fichiers vous
-     utilisez le render_template("/votre_nom_de_dossier/index.html")
-</p>
-<p>
-    caster prend deja en compte la structure de base du html:5 jusqu'au body avec les fichiers bootstrap pré-importé bans le fichiers base.html
-    Lorsque vous créez un nouveau fichier html dans votre dossier décorez le comme suit:
-    <p>
-        <span>
-            
-        </span>
+<div class="container mt-4">
+    <h1 class="display-4 text-center mb-4">
+        Les Contrôleurs
+    </h1>
+    <p class="lead">
+        Caster est inspiré de la célèbre architecture de codage MVC (Modèle-Vues-Contrôleurs).
     </p>
-</p>
+
+    <section>
+        <p class="mt-4">
+            Par défaut, un contrôleur sous le fichier <code>main.py</code> est déjà enregistré dans l'application et contient les différentes routes de base du framework.
+        </p>
+        <p>Ensuite, deux méthodes s'offrent à vous pour ajouter de nouvelles routes :</p>
+        <ul>
+            <li>
+                <strong>1. Continuer à définir dans le fichier <code>main.py</code> :</strong>
+                <p class="mt-3">Copiez le code ci-dessous pour définir une route dans le fichier <code>main.py</code> :</p>
+                
+                <!-- Zone de code avec bouton pour copier -->
+                <div class="card p-3 mb-4">
+                    <button class="btn btn-outline-secondary mb-2" onclick="copyToClipboard('#code-snippet')">
+                        Copier le code
+                    </button>
+                    <pre id="code-snippet" class="bg-light p-3 rounded">
+@main.route('/nomderoute')
+def fonction_a_executer():
+    return render_template("chemin/vers/le/template.html")
+                    </pre>
+                </div>
+            </li>
+            <li>
+                <strong>2. Définir un autre fichier de route :</strong>
+                Pour ajouter une route dans un fichier séparé, créez un fichier <strong>.py</strong> comme <code>blog_controller.py</code> pour plus de clarté.
+                <nav class="mt-3">
+                    <ol>
+                        <li>
+                            <strong>Importer les Blueprints de Flask :</strong>
+                            <div class="alert alert-info">
+                                <code>from flask import Blueprint</code>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Enregistrer le Blueprint sous un nom :</strong>
+                            <div class="alert alert-info">
+                                <code>blog_controller = Blueprint('blog', __name__)</code>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Importer ce nouveau fichier dans <code>/controllers/__init__.py</code> :</strong>
+                            <div class="alert alert-info">
+                                <code>from .controllers.blog_controller import blog_controller</code>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Enfin, importez le contrôleur dans <code>/app/__init__.py</code> et ajoutez cette ligne dans la boucle :</strong>
+                            <div class="alert alert-info">
+                                <code>from .controllers.blog_controller import blog_controller</code>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </li>
+        </ul>
+    </section>
+
+    <h2 class="display-6 mt-4">Les contrôleurs sans paramètres</h2>
+    <p>
+        Pour définir un contrôleur sans paramètres, il suffit de ne rien déclarer comme paramètre dans la fonction suivant la route. Par exemple :
+    </p>
+    <pre>
+@main.route('/')
+def index():
+    return render_template("chemin/vers/votre/template.html")
+    </pre>
+
+    <h2 class="display-6 mt-4">Les contrôleurs avec paramètres</h2>
+    <p>
+        Pour utiliser des paramètres dans un contrôleur, déclarez-les directement dans la fonction de la route, par exemple :
+    </p>
+    <pre>
+@main.route('/parametre/<param>')
+def fonction_avec_param(param):
+    return render_template("chemin/vers/votre/template.html", param=param)
+    </pre>
+
+    <h1 class="display-5 mt-5">Les Vues</h1>
+    <p>
+        Un contrôleur renvoie une vue sous forme de template. Vous pouvez utiliser <code>render_template</code> de Flask pour afficher une vue, ou pour rediriger vers une autre route avec <code>render_template(url_for('nom_blueprint.fonction'))</code>.
+    </p>
+    <p>
+        Les vues doivent être placées dans le dossier <code>/views/templates/nom_du_dossier/index.html</code>. Pour référencer cette vue dans un contrôleur, utilisez <code>render_template("/nom_du_dossier/index.html")</code>.
+    </p>
+    <p>
+        Caster prend en charge la structure de base HTML5, y compris le <code>&lt;body&gt;</code> et l'intégration de Bootstrap dans <code>base.html</code>. Lors de la création de nouveaux fichiers HTML, vous pouvez simplement les décorer selon la structure fournie par Caster.
+    </p>
+</div>
+
+<script>
+    function copyToClipboard(elementId) {
+        var copyText = document.querySelector(elementId);
+        var range = document.createRange();
+        range.selectNode(copyText);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+    }
+</script>
+
 {% endblock %}
